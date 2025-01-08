@@ -18,7 +18,6 @@ def is_authorized_user(_, __, m: Message):
 # Команда для получения всех чатов
 @JunctionBot.on_message(filters.command("get_chats") & filters.create(is_authorized_user))
 async def get_chats(client, message):
-    # Получаем последние 15 диалогов
     dialogs = [dialog async for dialog in user_client.get_dialogs(limit=10)]
     
     # Добавим отладочную информацию
@@ -30,7 +29,7 @@ async def get_chats(client, message):
     chat_list_str = "\n".join([re.sub(r", Type.*$", "", i) for i in chat_list if "GROUP" in i])
 
 
-    await message.reply_text(f"Груповые чаты, в которых состоит пользователь:\n{chat_list_str}")
+    await message.reply_text(f"Груповые чаты:\n{chat_list_str}")
 
 # Запуск пользовательского клиента
 user_client.start()

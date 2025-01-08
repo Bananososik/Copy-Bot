@@ -6,7 +6,7 @@ from ..utils.forward_message import forward_message
 
 def forward_filter(_, __, m: Message):
     for task in Config.TASKS:
-        if m.chat.id == int(task["from"]):
+        if m.chat.id == int(task["from_id"]):
             return True
     return False
 
